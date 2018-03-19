@@ -26,5 +26,5 @@ export const cookie = {
 			pre[key] = value;
 			return pre;
 		}, {});
-	}
+	}1
 }
