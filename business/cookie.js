@@ -18,7 +18,7 @@ export const cookie = {
 		document.cookie = cookie;
 	},
 	remove (name) {
-		this.set(name, '', 0.000000000001);
+		this.set(name, '', -1);
 	},
 	parse() {
 		return document.cookie.split('; ').reduce((pre, next) => {
