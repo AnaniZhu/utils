@@ -97,7 +97,7 @@ function complexThrottle (fn, context, timeout) {
  * @param {Functon} fn 要执行的函数
  * @param {Context} context 函数执行的上下文
  * @param {Number} timeout 间隔时间
- * @param {Number} mode 通过不同mode拿到不同的节流函数，mode === 1: 简单版节流，mode !== 1: 复杂版节流
+ * @param {Number} mode 通过不同mode拿到不同的节流函数，1: 时间戳版节流，2: 定时器版节流，3：复杂版节流
  * @returns {Function} 节流后的函数
  */
 function throttle (fn, context, timeout, mode = 1) {
