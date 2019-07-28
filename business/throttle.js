@@ -9,12 +9,12 @@
 function timeStampThrottle (fn, context, timeout) {
   let lastExcuteTime
 
-  return function () {
+  return function (...args) {
     let interval = Date.now() - lastExcuteTime
 
     if (lastExcuteTime && interval < timeout) return
 
-    fn.apply(context, arguments)
+    fn.apply(context, args)
     lastExcuteTime = Date.now()
   }
 }
@@ -30,10 +30,8 @@ function timeStampThrottle (fn, context, timeout) {
 function timerThrottle (fn, context, timeout) {
   let timer
 
-  return function () {
+  return function (...args) {
     if (timer) return
-
-    let args = arguments
 
     timer = setTimeout(() => {
       fn.apply(context, args)
@@ -56,7 +54,7 @@ function complexThrottle (fn, context, timeout) {
   let timer
   let lastExcuteTime
 
-  return function () {
+  return function (...args) {
 
     /**
      * 每次执行都记录时间戳，与上一次执行时间戳作比较，计算出准确的延迟时间
@@ -70,9 +68,6 @@ function complexThrottle (fn, context, timeout) {
     }
 
     if (timer) return
-
-    let args = arguments
-
 
     // 第一次执行
     if (!lastExcuteTime) {
